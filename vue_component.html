@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue Sample</title>
+  </head>
+  <body>
+    <div id="app">
+      <button>Parent Component</button>
+      <my-component></my-component>
+      <my-local-component></my-local-component>
+    </div>
+
+    <script src="https:/unpkg.com/vue@2.3.3"></script>
+    <script>
+      // my-component 라는 컴포넌트를 Vue 컴포넌트에 전역으로 등록
+      // template: 컴포넌트에 가시적으로 나타낸 html 요소
+      //
+      Vue.component("my-component", {
+        template: "<div> A global component!</div>"
+      });
+
+      // Local Component
+        var cmp = {
+            template: '<div> A local component!</div>'
+        };
+
+
+      new Vue({
+        el: "#app",
+        components: {
+            //태그명 : 컴포넌트의 내용
+            'my-local-component' : cmp
+        }
+      })
+      // 결과는 <my-component></my-component> 이 -->
+      // my-component 컴포넌트의 템플릿으로 치환된다.
+      // --> <div> A cuctom component!</div>
+    </script>
+  </body>
+</html>
